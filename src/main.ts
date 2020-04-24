@@ -47,12 +47,14 @@ async function main() {
 
     program.command("get-login <url>")
            .description("Gets the login name for the specified URL.")
+           // @ts-ignore
            .action(url => command = {
                type: CommandType.GetLogin,
                url: url
            });
     program.command("get-pw <url>")
            .description("Gets the password for the specified URL.")
+           // @ts-ignore
            .action(url => command = {
                type: CommandType.GetPassword,
                url: url

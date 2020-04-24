@@ -17,7 +17,8 @@
     "allowUnreachableCode": true,
     "lib": [
       "es2017",
-      "es2018"
+      "es2018",
+      "dom"
     ]
   },
   "compileOnSave": false,

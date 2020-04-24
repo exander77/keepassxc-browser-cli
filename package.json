@@ -2,24 +2,28 @@
   "name": "keepassxc-browser-cli",
   "version": "1.0.4",
   "description": "A CLI application for talking to KeePassXC via the KeePassXC-Browser protocol.",
-  "prepublish": "tsc",
   "keywords": [
     "KeePassXC"
   ],
   "bin": {
     "keepassxc-browser-cli": "dist/main.js"
   },
+  "scripts": {
+    "prepare": "tsc && mkdir -p dist && browserify -x electron dist/protonmail.js --node  > bundle/protonmail.js"
+  },
   "repository": "https://github.com/asarium/keepassxc-browser-cli",
   "author": "asarium",
   "license": "MIT",
   "devDependencies": {
+    "@types/es6-shim": "^0.31.39",
     "@types/node": "^12.7.2",
+    "browserify": "^16.5.1",
     "source-map-support": "^0.5.16",
     "typescript": "^3.5.3"
   },
   "dependencies": {
     "commander": "latest",
-    "native-messaging-connector": "^1.0.1",
+    "native-messaging-connector": "github:exander77/native-messaging-connector#master",
     "tweetnacl": "latest",
     "tweetnacl-util": "latest"
   }

@@ -1,13 +1,13 @@
 import * as path from "path";
 import {promises as fsp} from "fs";
 
-function getConfigFile() {
+function getConfigFile(appName: string) {
     let data_home = process.env.XDG_CONFIG_HOME;
     if (!data_home) {
         data_home = path.join(process.env.HOME, ".config");
     }
 
-    return path.join(data_home, "keepassxc-node-cli", "config.json");
+    return path.join(data_home, appName, "config.json");
 }
 
 async function fileExists(path: string): Promise<boolean> {
@@ -36,8 +36,8 @@ export class Configuration {
 
     private _keys: { [dbHash: string]: DbKey };
 
-    constructor() {
-        this._configFile = getConfigFile();
+    constructor(appName: string = "keepassxc-node-cli") {
+        this._configFile = getConfigFile(appName);
     }
 
     public async load() {
