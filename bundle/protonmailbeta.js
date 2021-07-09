@@ -377,7 +377,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const inject_1 = require("./inject");
 function login(credentials) {
     console.log('Filling login data...');
-    var login = document.querySelector("#login");
+    var login = document.querySelector("#username");
     login.focus();
     document.execCommand('selectAll');
     document.execCommand('insertText', false, credentials.login);
@@ -385,10 +385,13 @@ function login(credentials) {
     password.focus();
     document.execCommand('selectAll');
     document.execCommand('insertText', false, credentials.password);
-    document.querySelector("button.pm-button--primary").click();
+    document.querySelector("button.button-henlo").click();
 }
 function logincheck() {
-    return document.getElementById("login");
+    return document.getElementById("username");
+}
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 window.onload = function () {
     console.log('Window loaded...');
@@ -404,6 +407,14 @@ window.onload = function () {
                 wrapped(0, 300000);
             }
             else {
+                if (document.getElementById('global_search')) {
+                    if (window.location.hash != '#reloaded') {
+                        console.log('Reloading...');
+                        window.location.hash = '#reloaded';
+                        window.location.reload();
+                    }
+                    return;
+                }
                 if (c > 0)
                     wrapped(c - 1, Math.round(t * 1.4));
                 else
